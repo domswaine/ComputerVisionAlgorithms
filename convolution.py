@@ -52,15 +52,22 @@ def sqr(n):
     return n * n
 
 
-def gaussian_mask(x, y, std):
+def gaussian_at_position(x, y, std):
     return (1 / (2 * pi * sqr(std))) \
            * exp(-1 * ((sqr(x) + sqr(y))/(2 * sqr(std))))
 
 
+def gaussian_mask(dim, std):
+    mask = np.zeros(dim)
+    xOffset, yOffset = -dim[0]/2 + 0.5, -dim[1]/2 + 0.5
+    for x in range(dim[0]):
+        for y in range(dim[1]):
+            mask[x, y] = gaussian_at_position(x + xOffset, y + yOffset, std)
+    return mask
+
+
 def t3_q7():
-    for x in range(-1, 2):
-        for y in range(-1, 2):
-            print("(%i, %i)" % (x, y), gaussian_mask(x, y, 0.46))
+    print(gaussian_mask((5, 5), 0.46))
 
 
 def main():

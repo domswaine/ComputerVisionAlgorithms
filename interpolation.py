@@ -22,6 +22,16 @@ def bilinear_interpolation(arr):
     return out
 
 
+def edge_directed_interpolation(arr):
+    out = np.array(arr).copy()
+    x_dim, y_dim = arr.shape
+    for x in range(1, x_dim - 1):
+        for y in range(1, y_dim - 1):
+            if np.isnan(arr[y, x]):
+
+    return out
+
+
 def main():
     red_channel = np.array([
         [NAN, 100, NAN, 100, NAN, 100],
@@ -31,7 +41,24 @@ def main():
         [NAN, 500, NAN, 500, NAN, 500],
         [NAN, NAN, NAN, NAN, NAN, NAN]
     ])
+    green_channel = np.array([
+        [100, NAN, 100, NAN, 100, NAN],
+        [NAN, 200, NAN, 200, NAN, 200],
+        [300, NAN, 300, NAN, 300, NAN],
+        [NAN, 400, NAN, 400, NAN, 400],
+        [500, NAN, 500, NAN, 500, NAN],
+        [NAN, 600, NAN, 600, NAN, 600]
+    ])
+    blue_channel = np.array([
+        [NAN, NAN, NAN, NAN, NAN, NAN],
+        [200, NAN, 200, NAN, 200, NAN],
+        [NAN, NAN, NAN, NAN, NAN, NAN],
+        [400, NAN, 400, NAN, 400, NAN],
+        [NAN, NAN, NAN, NAN, NAN, NAN],
+        [600, NAN, 600, NAN, 600, NAN]
+    ])
     print(np.around(bilinear_interpolation(red_channel)))
+    print(np.around(edge_directed_interpolation(red_channel)))
 
 
 if __name__ == "__main__":
