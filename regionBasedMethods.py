@@ -18,20 +18,19 @@ def region_growing(arr, metric, offsets):
 
     region_index = 1
     while len(unassigned) >= 1:
-        added = True
         seed = [p for p in positions if p in unassigned][0]
         region = [seed]
-        while added:
-            added = False
-            for pos in region:
-                if pos in unassigned:
-                    unassigned.remove(pos)
-                    feature_vector = arr[pos[0], pos[1], :]
-                    out[pos[0], pos[1]] = region_index
-                    for neighbour_pos in neighbouring_positions(pos, arr, offsets):
-                        neighbour_feature_vector = arr[neighbour_pos[0], neighbour_pos[1], :]
-                        if metric(feature_vector, neighbour_feature_vector) and neighbour_pos in unassigned:
-                            region.append(neighbour_pos)
+
+        for pos in region:
+            if pos in unassigned:
+                unassigned.remove(pos)
+                feature_vector = arr[pos[0], pos[1], :]
+                out[pos[0], pos[1]] = region_index
+                for neighbour_pos in neighbouring_positions(pos, arr, offsets):
+                    neighbour_feature_vector = arr[neighbour_pos[0], neighbour_pos[1], :]
+                    if metric(feature_vector, neighbour_feature_vector) and neighbour_pos in unassigned:
+                        region.append(neighbour_pos)
+
         region_index += 1
     return out
 
