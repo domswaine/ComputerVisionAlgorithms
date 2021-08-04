@@ -1,6 +1,7 @@
 import numpy as np
 from distance_metrics import cross_correlation
 from distance_metrics import normalised_cross_correlation
+from distance_metrics import cosine
 from distance_metrics import correlation_coefficient
 from distance_metrics import sum_of_absolute_differences
 
@@ -38,7 +39,19 @@ def question_2():
         print("")
 
 
+def question_7():
+    object_a = np.array([[2, 0, 0, 5, 1, 0, 0, 0, 3, 1]])
+    object_b = np.array([[0, 0, 1, 2, 0, 3, 1, 0, 1, 0]])
+    object_c = np.array([[1, 1, 2, 0, 0, 1, 0, 3, 1, 1]])
+    new = np.array([[2, 1, 1, 0, 1, 1, 0, 2, 0, 1]])
+
+    print(cosine(object_a, new))
+    print(cosine(object_b, new))
+    print(cosine(object_c, new))
+
+
 if __name__ == "__main__":
     question_1()
     question_2()
+    question_7()
 
