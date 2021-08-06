@@ -6,6 +6,7 @@ def image_differencing(series):
         diff = np.array(before) - np.array(after)
         print(diff)
 
+
 # Adapt moving average calculation as appropriate
 def background_subtraction(series, beta=0.5):
     background = np.zeros(np.array(series[0].shape))

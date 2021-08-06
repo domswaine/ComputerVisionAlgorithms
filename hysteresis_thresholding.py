@@ -1,5 +1,5 @@
 import numpy as np
-from morphologicalOperations import dilate, allDirections
+from morphological_operations import dilate, allDirections
 
 
 def hysteresis_threshold(arr, high, low, structure):

@@ -1,7 +1,7 @@
 import numpy as np
-from distanceMetrics import sum_of_absolute_differences
+from distance_metrics import sum_of_absolute_differences
 
-horizontalAndVertical = [(0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (1, -1), (-1, +1), (-1, -1)]
+horizontalAndVertical = [(0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 
 def neighbouring_positions(pos, arr, offsets):
@@ -35,6 +35,24 @@ def region_growing(arr, metric, offsets):
     return out
 
 
+def region_merging(arr, metric, offsets):
+    out = np.zeros((arr.shape[0], arr.shape[1]))
+    region_indices = set()
+
+    region_index = 1
+    for x in range(arr.shape[0]):
+        for y in range(arr.shape[1]):
+            out[x, y] = region_index
+            region_indices.add(region_index)
+            region_index += 1
+    del region_index
+
+    region_index = min(region_indices)
+
+
+    return out
+
+
 if __name__ == "__main__":
     a = np.array([
         [[5, 10, 15], [10, 15, 30], [10, 10, 25]],
@@ -42,4 +60,5 @@ if __name__ == "__main__":
         [[10, 10, 15], [30, 10, 5], [10, 5, 30]]
     ])
     metric = lambda a, b: sum_of_absolute_differences(a, b) < 12
-    print(region_growing(a, metric, horizontalAndVertical))
+    # print(region_growing(a, metric, horizontalAndVertical))
+    print(region_merging(a, metric, horizontalAndVertical))
