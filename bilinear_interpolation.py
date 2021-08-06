@@ -39,7 +39,16 @@ def main():
         [NAN, NAN, NAN, NAN, NAN],
         [0.0, NAN, 0.6, NAN, 0.1]
     ])
-    print(bilinear_interpolation(second_channel))
+    print(bilinear_interpolation(second_channel), "\n")
+
+    third_channel = np.array([
+        [NAN, 0.3, NAN, 0.3, NAN],
+        [0.5, NAN, 0.3, NAN, 0.3],
+        [NAN, 0.3, NAN, 0.6, NAN],
+        [0.6, NAN, 0.6, NAN, 0.0],
+        [NAN, 0.7, NAN, 0.3, NAN]
+    ])
+    print(bilinear_interpolation(third_channel))
 
 
 if __name__ == "__main__":
