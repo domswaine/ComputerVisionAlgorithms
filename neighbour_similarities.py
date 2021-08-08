@@ -20,6 +20,6 @@ if __name__ == "__main__":
     image = np.array([
         [[5, 10, 15], [10, 15, 30], [10, 10, 25]],
         [[10, 10, 15], [5, 20, 15], [10, 5, 30]],
-        [[10, 10, 15], [30, 10, 5], [30, 10, 10]]
+        [[5, 5, 15], [30, 10, 5], [30, 10, 10]]
     ])
     neighbour_similarities(image, sum_of_absolute_differences, eight_directions)
