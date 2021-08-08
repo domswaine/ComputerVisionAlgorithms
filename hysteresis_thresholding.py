@@ -2,10 +2,10 @@ import numpy as np
 from morphological_operations import dilate, allDirections
 
 
-def hysteresis_threshold(arr, high, low, structure):
+def hysteresis_thresholding(arr, high, low, structure):
     high_thresh = (arr > high).astype(int)
-    low_thresh = (arr > low).astype(int) - high_thresh
-    return high_thresh + low_thresh * dilate(arr, structure)
+    low_thresh = (arr > low).astype(int)
+    return high_thresh + (low_thresh - high_thresh) * dilate(high_thresh, structure)
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
         [0.2, 0.2, 0.7],
         [0.3, 0.8, 0.9]
     ])
-    print(hysteresis_threshold(I, 0.75, 0.25, allDirections))
+    print(hysteresis_thresholding(I, 0.75, 0.25, allDirections))
 
 
 if __name__ == "__main__":
