@@ -1,13 +1,6 @@
 import numpy as np
 from distance_metrics import sum_of_absolute_differences
-
-horizontalAndVertical = [(0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
-
-
-def neighbouring_positions(pos, arr, offsets):
-    x_dim, y_dim, _ = arr.shape
-    positions = [(pos[0] + x_offset, pos[1] + y_offset) for x_offset, y_offset in offsets]
-    return [(x, y) for x, y in positions if 0 <= x < x_dim and 0 <= y < y_dim]
+from offsets import horizontalVerticalAndDiagonal, neighbouring_positions
 
 
 def region_growing(arr, metric, offsets):
@@ -35,30 +28,11 @@ def region_growing(arr, metric, offsets):
     return out
 
 
-def region_merging(arr, metric, offsets):
-    out = np.zeros((arr.shape[0], arr.shape[1]))
-    region_indices = set()
-
-    region_index = 1
-    for x in range(arr.shape[0]):
-        for y in range(arr.shape[1]):
-            out[x, y] = region_index
-            region_indices.add(region_index)
-            region_index += 1
-    del region_index
-
-    region_index = min(region_indices)
-
-
-    return out
-
-
 if __name__ == "__main__":
-    a = np.array([
+    image = np.array([
         [[5, 10, 15], [10, 15, 30], [10, 10, 25]],
         [[10, 10, 15], [5, 20, 15], [10, 5, 30]],
         [[10, 10, 15], [30, 10, 5], [10, 5, 30]]
     ])
-    metric = lambda a, b: sum_of_absolute_differences(a, b) < 12
-    # print(region_growing(a, metric, horizontalAndVertical))
-    print(region_merging(a, metric, horizontalAndVertical))
+    hvdOffsets = horizontalVerticalAndDiagonal
+    print(region_growing(image, lambda a, b: sum_of_absolute_differences(a, b) < 12, hvdOffsets))
