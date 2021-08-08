@@ -5,8 +5,8 @@ def main():
     # Intrinsic parameters
     alpha = 925  # Magnification factor in x' direction
     beta = 740  # Magnification factor in y' direction
-    offset_x = 244  # Offset from the top-left corner to the principal point, along the x-axis / pixels
-    offset_y = 180  # Offset from the top-left corner to the principal point, along the y-axis / pixels
+    offset_x = 244  # Offset from the top-left corner to the principal point, along the x-axis, in pixels
+    offset_y = 180  # Offset from the top-left corner to the principal point, along the y-axis, in pixels
 
     projection_operator = np.array([
         [1, 0, 0, 0],

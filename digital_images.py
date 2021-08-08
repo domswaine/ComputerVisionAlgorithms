@@ -16,7 +16,7 @@ def to_greyscale(channels: list, weights: list = None):
 
 
 def quantize(image, desired: int, current: int = 255):
-    factor = 1 / (current / pow(2, desired))
+    factor = (1 / current) * pow(2, desired)
     return np.floor(factor * image)
 
 
@@ -37,7 +37,7 @@ def main():
     ])
 
     greyscale = np.around(to_greyscale([red_channel, green_channel, blue_channel]), 0)
-    print(greyscale)
+    print(quantize(greyscale, 8))
     print(quantize(greyscale, 2))
 
 
