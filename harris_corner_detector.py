@@ -1,6 +1,13 @@
+# python -m unittest harris_corner_detector
+
 import numpy as np
 import unittest
 from scipy.signal import convolve2d
+
+# Notes
+# R ≈ 0 -> intensity values are unchanging
+# R < 0 -> edges
+# R > 0 -> occurs at corners
 
 
 def harris_corner_detector(Ix, Iy, mask, k=0.05):
