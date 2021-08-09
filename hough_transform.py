@@ -5,6 +5,7 @@ import unittest
 from math import cos, sin, radians
 
 
+# Note - Edge pixels are assigned a value of 0 in the array.
 def hough_transform(arr, angles):
     accumulator = {}
     y_dim, x_dim = arr.shape
