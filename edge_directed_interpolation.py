@@ -1,4 +1,7 @@
+# python -m unittest edge_directed_interpolation
+
 import numpy as np
+import unittest
 from numpy import NAN
 
 
@@ -21,6 +24,26 @@ def edge_directed_interpolation(arr):
                 else:
                     out[y, x] = 0.25 * (top + bottom + left + right)
     return out
+
+
+class TestEdgeDirectedInterpolation(unittest.TestCase):
+    I = np.array([
+        [NAN, 0.3, NAN, 0.3, NAN],
+        [0.5, NAN, 0.3, NAN, 0.3],
+        [NAN, 0.3, NAN, 0.6, NAN],
+        [0.6, NAN, 0.6, NAN, 0.0],
+        [NAN, 0.7, NAN, 0.3, NAN]
+    ])
+
+    target = np.array([
+        [0.3, 0.3, 0.3],
+        [0.3, 0.45, 0.6],
+        [0.6, 0.6, 0.45],
+    ])
+
+    def test_jay_paper(self):
+        out = edge_directed_interpolation(self.I)[1:4, 1:4]
+        self.assertTrue(np.array_equal(np.around(out, 2), self.target))
 
 
 def main():
