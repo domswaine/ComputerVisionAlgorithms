@@ -9,7 +9,7 @@ def hough_transform(arr, angles):
         for y in range(y_dim):
             if arr[y, x] == 0:
                 for theta in angles:
-                    r = np.around(y * cos(radians(theta)) - x * sin(radians(theta)), 3)
+                    r = round(y * cos(radians(theta)) - x * sin(radians(theta)), 3)
                     key = (theta, round(r))
                     if key not in accumulator:
                         accumulator[key] = 0
