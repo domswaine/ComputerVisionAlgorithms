@@ -24,7 +24,7 @@ def bilinear_interpolation(arr):
     return out
 
 
-class TestHarrisCornerDetector(unittest.TestCase):
+class TestBilinearInterpolation(unittest.TestCase):
     I = np.array([
         [NAN, 0.3, NAN, 0.3, NAN],
         [0.5, NAN, 0.3, NAN, 0.3],
