@@ -1,11 +1,14 @@
+# python -m unittest bilinear_interpolation
+
 import numpy as np
 from numpy import NAN
+import unittest
 from offsets import eight_directions as offsets
 
 
 def bilinear_interpolation(arr):
     out = np.array(arr).copy()
-    x_dim, y_dim = arr.shape
+    y_dim, x_dim = arr.shape
     for x in range(x_dim):
         for y in range(y_dim):
             if np.isnan(arr[y, x]):
@@ -19,6 +22,28 @@ def bilinear_interpolation(arr):
                             intensities.append(value)
                 out[y, x] = sum(intensities) / len(intensities)
     return out
+
+
+class TestHarrisCornerDetector(unittest.TestCase):
+    I = np.array([
+        [NAN, 0.3, NAN, 0.3, NAN],
+        [0.5, NAN, 0.3, NAN, 0.3],
+        [NAN, 0.3, NAN, 0.6, NAN],
+        [0.6, NAN, 0.6, NAN, 0.0],
+        [NAN, 0.7, NAN, 0.3, NAN]
+    ])
+
+    target = np.array([
+        [0.4, 0.3, 0.3, 0.3, 0.3],
+        [0.5, 0.35, 0.3, 0.38, 0.3],
+        [0.47, 0.3, 0.45, 0.6, 0.3],
+        [0.6, 0.55, 0.6, 0.38, 0.0],
+        [0.65, 0.7, 0.53, 0.3, 0.15]
+    ])
+
+    def test_jay_paper(self):
+        out = bilinear_interpolation(self.I)
+        self.assertTrue(np.array_equal(np.around(out, 2), self.target))
 
 
 def main():
