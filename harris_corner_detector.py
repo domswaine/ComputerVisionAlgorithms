@@ -1,4 +1,5 @@
 import numpy as np
+import unittest
 from scipy.signal import convolve2d
 
 
@@ -19,6 +20,35 @@ def harris_corner_detector(Ix, Iy, mask, k=0.05):
     return determinant - k * trace * trace
 
 
+class TestHarrisCornerDetector(unittest.TestCase):
+    Ix = np.array([
+        [1, 0, 0, 0, 0],
+        [-1, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0]
+    ])
+
+    Iy = np.array([
+        [1, -1, 0, 0, 0],
+        [-1, 0, -1, 0, 0],
+        [1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0]
+    ])
+
+    mask = np.ones((3, 3))
+
+    target = np.array([
+        [3.2, 5.55, 1.55, -0.05, 0],
+        [7.8, 12.95, 5.2, 0.55, 0],
+        [3.75, 7.8, 3.75, 0.55, 0],
+        [-0.2, 1.2, 0.55, -0.2, 0]
+    ])
+
+    def test_t6q9(self):
+        out = harris_corner_detector(self.Ix, self.Iy, self.mask)
+        self.assertTrue(np.array_equal(np.around(out, 2), self.target))
+
+
 def main():
     Ix = np.array([
         [1, 0, 0, 0, 0],
@@ -26,13 +56,16 @@ def main():
         [0, 0, 1, 0, 0],
         [0, 0, 0, 0, 0]
     ])
+
     Iy = np.array([
         [1, -1, 0, 0, 0],
         [-1, 0, -1, 0, 0],
         [1, 1, 1, 0, 0],
         [0, 0, 0, 0, 0]
     ])
+
     mask = np.ones((3, 3))
+
     print(harris_corner_detector(Ix, Iy, mask))
 
 
