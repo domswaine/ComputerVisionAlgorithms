@@ -1,18 +1,15 @@
 import numpy as np
-from math import pi, cos, sin
-
-
-def deg_to_rad(n: float) -> float:
-    return n * pi/180
+from math import cos, sin, radians
 
 
 def hough_transform(arr, angles):
     accumulator = {}
-    for x in range(arr.shape[0]):
-        for y in range(arr.shape[1]):
-            if arr[x][y] == 0:
+    y_dim, x_dim = arr.shape
+    for x in range(x_dim):
+        for y in range(y_dim):
+            if arr[y, x] == 0:
                 for theta in angles:
-                    r = x * cos(deg_to_rad(theta)) - y * sin(deg_to_rad(theta))
+                    r = np.around(y * cos(radians(theta)) - x * sin(radians(theta)), 3)
                     key = (theta, round(r))
                     if key not in accumulator:
                         accumulator[key] = 0
@@ -27,6 +24,7 @@ def main():
         [1, 1, 0, 1]
     ])
     print(hough_transform(I, [0, 45, 90, 135]))
+    print(hough_transform(I, [0, 30, 60, 90, 120, 150]))
 
 
 if __name__ == "__main__":
