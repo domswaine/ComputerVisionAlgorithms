@@ -39,18 +39,14 @@ def plot(arr):
 
 def main():
     I = np.array([
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 1, 1, 1, 0, 0],
-        [0, 0, 1, 1, 0, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 1, 0, 1, 0],
+        [1, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [1, 0, 1, 1, 1]
     ])
 
-    plot(I)
-    plot(dilate(erode(I, horizontalAndVertical), horizontalAndVertical))
-    plot(erode(dilate(I, allDirections), allDirections))
+    out = close(I, horizontalAndVertical).astype(int)
+    print(out)
 
 
 if __name__ == "__main__":

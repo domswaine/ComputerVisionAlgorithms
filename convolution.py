@@ -71,12 +71,10 @@ def t3_q7():
 
 
 def main():
-    t3_q1()
-    t3_q2()
-    t3_q3()
-    t3_q5()
-    t3_q6()
-    t3_q7()
+    g = gaussian_mask((3, 3), 0.6)
+    print(g)
+    firstDerivative = np.array([[-1, 1]])
+    print(convolve2d(g, firstDerivative))
 
 
 if __name__ == "__main__":

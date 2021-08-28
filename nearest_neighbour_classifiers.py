@@ -33,14 +33,12 @@ def nearest_mean(dataset, point, metric):
 
 
 def main():
-    dataset = [
-        (np.array([[7, 7]]), "A"),
-        (np.array([[7, 4]]), "A"),
-        (np.array([[3, 4]]), "B"),
-        (np.array([[1, 4]]), "B"),
-    ]
-    nearest_neighbours(dataset, (3, 7), euclidean_distance)
-    nearest_mean(dataset, (3, 7), euclidean_distance)
+    arr = [np.array([2, 3, 0]), np.array([0, 1, 3]), np.array([1, 2, 4]), np.array([3, 4, 1])]
+
+    point = np.array([1, 4, 2])
+
+    for a in arr:
+        print(round(euclidean_distance(point, a), 4))
 
 
 if __name__ == "__main__":

@@ -92,3 +92,41 @@ class TestDistanceMetrics(unittest.TestCase):
         self.assertEqual(round(euclidean_distance(self.T1, self.I), 2), 0)
         self.assertEqual(round(euclidean_distance(self.T2, self.I), 2), 1.41)
         self.assertEqual(round(euclidean_distance(self.T3, self.I), 2), 1)
+
+
+if __name__ == "__main__":
+    # lista = [np.array([0.3, 0.1, 1.0]), np.array([0.4, 0.4, 1.0]), np.array([0.0, 0.2, 0.0])]
+    # listb = [np.array([1.0, 0.5, 0.8]), np.array([0.1, 0.3, 0.2])]
+    #
+    # for a in lista:
+    #     for b in listb:
+    #         print(a, b, round(sum_of_absolute_differences(a, b), 4))
+    #
+    # print("***")
+    # a_mean = np.array([0.2333, 0.2333, 0.6667])
+    # b_mean = np.array([0.55, 0.4, 0.5])
+    # print(a_mean, b_mean, round(sum_of_absolute_differences(a_mean, b_mean), 4))
+
+
+    # Question 8
+    # a = np.array([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1])
+    # b = np.array([0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0])
+    # c = np.array([0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1])
+    #
+    # print(round(cross_correlation(a, b)))
+    # print(round(cross_correlation(a, c)))
+    # print(round(cross_correlation(b, c)))
+    #
+    # print(round(correlation_coefficient(a, b)))
+    # print(round(correlation_coefficient(a, c)))
+    # print(round(correlation_coefficient(b, c)))
+
+    # Question 12
+    Q = np.array([4, 4, 1])
+    A = np.array([4, 4, 1])
+    B = np.array([3, 4, 2])
+    C = np.array([2, 3, 4])
+
+    print(euclidean_distance(Q, A))
+    print(euclidean_distance(Q, B))
+    print(euclidean_distance(Q, C))

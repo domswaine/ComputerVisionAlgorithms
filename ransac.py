@@ -1,4 +1,5 @@
 import numpy as np
+from distance_metrics import sum_of_absolute_differences
 
 
 def ransac(matches, is_inlier):
@@ -20,12 +21,16 @@ def ransac(matches, is_inlier):
 
 
 def main():
-    function = lambda a, b: np.linalg.norm(a - b, 2) < 3
+    # lista = [np.array([0.7, 0.1, 0.8]), np.array([1.0, 0.7, 0.3]), np.array([0.0, 0.2, 0.4])]
+    # listb = [np.array([0.5, 0.3, 0.7]), np.array([0.0, 0.0, 1.0]), np.array([0.7, 0.6, 0.7]), np.array([0.6, 0.5, 0.6]),
+    #          np.array([1.0, 0.8, 0.6])]
+    #
+    # a = lista[2]
+    # for b in listb:
+    #     print(round(sum_of_absolute_differences(a, b), 4))
 
-    matches = [((16, 50), (10, 40)), ((25, 14), (20, 5))]
-    ransac(matches, function)
-
-    matches = [((30, 31), (30, 5)), ((40, 45), (20, 10))]
+    function = lambda a, b: sum_of_absolute_differences(a, b) < 5.05
+    matches = [((98, 37), (25, 98)), ((13, 72), (12, 74)), ((32, 80), (26, 82))]
     ransac(matches, function)
 
 
